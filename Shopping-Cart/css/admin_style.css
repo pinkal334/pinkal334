@@ -1,0 +1,612 @@
+/* Global Style Starts Here */
+:root {
+    --blue: #2980b9;
+    --red: tomato;
+    --green: rgb(26, 174, 26);
+    --orange: rgb(218, 167, 73);
+    --black: #333;
+    --white: #fff;
+    --table-bg-color: #f0f0f0;
+    --table-border-color: #ccc;
+    --bg-color: #eee;
+    --dark-bg: rgba(0, 0, 0, .7);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    --border: .1rem solid #999;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    /* display: flex; */
+    /* height: 100vh; */
+    /* flex-direction: column; */
+}
+
+/* Global Style Ends Here */
+
+
+/* Header styles starts here */
+header {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 20px 0;
+}
+
+header h1 {
+    float: left;
+    margin: 0;
+}
+
+.admin-title a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+nav ul {
+    float: right;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+    max-height: 100vh;
+}
+
+.navigation__menu {
+    display: none;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Header style ends here */
+
+
+/*page containing comman tables and forms styles starts here */
+/* Brand, Categories, User_Management pages table styles*/
+/* Table section style starts here */
+.management {
+    padding: 50px 0;
+}
+
+.management h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container {
+    margin: 20px auto;
+    width: 80%;
+}
+
+table th,
+table td {
+    border: 1px solid var(--table-border-color);
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: var(--bg-color);
+}
+
+table td a {
+    display: inline-block;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+table td a:hover {
+    opacity: 0.7;
+}
+
+.table-container {
+    max-width: 1250px;
+    height: 340px; 
+    overflow: auto
+}
+
+td img{
+    height: 50px;
+    width: 50px;
+}
+
+/* Tabel section style ends here */
+/* Form section style ends here */
+/*page containing comman tables and forms styles ends here */
+
+
+/* Button styles starts */
+.btn {
+    padding: 10px 15px;
+    border-radius: 15px;
+    color: var(--white);
+}
+
+.btn-edit {
+    background-color: var(--blue);
+}
+
+.btn-delete {
+    background-color: var(--red);
+}
+
+.btn-view {
+    background-color: var(--green);
+}
+
+.btn-track-order {
+    background-color: var(--green);
+}
+
+.btn-btn-primary {
+    background-color: var(--blue);
+}
+
+/* Button styles ends */
+
+
+/* Brand_edit Styles Starts */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.edit__category-label,
+.edit__category-text,
+.edit__brand-label,
+.edit__brand-text {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.7;
+}
+
+textarea {
+    height: 100px;
+}
+
+/* Brand Edit style ends */
+
+
+/* Comman Container for edit options starts*/
+.container__edit {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--box-shadow);
+}
+
+/* Comman Container for edit option ends */
+
+
+/* Dashboard Style starts here */
+.dashboard__container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.dashboard__section {
+    margin-bottom: 30px;
+}
+
+.dashboard__section h2 {
+    margin-bottom: 10px;
+}
+
+.dashboard__section p {
+    margin-bottom: 20px;
+}
+
+.dashboard__section ul {
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard__section ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.dashboard__section ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Dashboard Style ends here */
+
+
+/* Edit_product page Style Starts Here */
+.container__edit-profile {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--box-shadow);
+}
+
+.title__edit-profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form__edit-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.label__edit-profile {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.input-text__edit-profile {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-submit__edit-profile {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.input-submit__edit-profile:hover {
+    opacity: 0.7;
+}
+
+.select__edit-profile {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--table-border-color);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Edit_product page Style Starts Here */
+
+
+/* Product page style starts here */
+.add-product {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Product page style starts here */
+
+/* test */
+.form-brand,
+.form-category {
+    margin-top: 20px;
+}
+
+form label {
+    margin-right: 10px;
+}
+
+/* form input[type="text"] */
+.add-new-brand,
+.add-new-category {
+    padding: 5px;
+    width: 200px;
+}
+
+/* form input[type="submit"] */
+.submit-new-brand,
+.submit-new-category,
+.category-submit {
+    padding: 5px 10px;
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.category-label,
+.category-submit {
+    margin-top: 5px;
+}
+
+/* form input[type="submit"] */
+.submit-new-brand:hover,
+.submit-new-category:hover,
+.add-product:hover {
+    opacity: 0.7;
+}
+
+/* order_management */
+.order-manage-title {
+    margin: 0 auto;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+.ftr {
+    margin-top: auto;
+}
+
+/* Registration style starts here */
+.registration__container {
+	width: 50%;
+	margin: 50px auto;
+	background-color: var(--white);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px var(--box-shadow);
+}
+
+.registration__title {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.registration__input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid var(--table-border-color);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.error-message {
+	color: var(--red);
+	margin-bottom: 10px;
+}
+
+input[type="submit"] {
+	background-color: var(--green);
+	color: var(--white);
+	border: none;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	opacity: 0.7;
+}
+
+/* Registration style ends here */
+
+/* login styles starts here*/
+.login__main-container {
+	/* margin: auto 40%; */
+	display: grid;
+	justify-content: center;
+	margin: auto 0;
+}
+
+.login-container {
+	background-color: var(--white);
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 10px var(--box-shadow);
+	width: 300px;
+}
+
+.login-title {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.login-label {
+	font-weight: bold;
+}
+
+.login-input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid var(--table-border-color);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.login-checkbox {
+	/* width: 100%; */
+	padding: 10px;
+	background-color: var(--green);
+	color: var(--white);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.login-checkbox:hover {
+	opacity: 0.7;
+}
+
+.error-message {
+	color: var(--red);
+	margin-bottom: 10px;
+}
+
+.btn {
+	text-decoration: none;
+	padding: 8px 12px;
+	border-radius: 15px;
+	color: var(--white);
+}
+
+.btn-submit {
+	background-color: var(--green);
+}
+
+.btn-submit:hover {
+	opacity: 0.7;
+}
+
+.btn-clear-cart {
+	background-color: var(--blue);
+}
+
+.btn-remove{
+	background-color: var(--red);
+}
+
+/* Login styles ends here */
+
+@media (max-width: 768px) {
+    .registration__container {
+        width: 80%;
+    }
+
+    .navigation__menu {
+        display: block;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    nav ul li {
+        display: none;
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    header .container {
+        flex-direction: column;
+        gap: calc(20px);
+    }
+
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .container__edit-profile {
+        width: 80%;
+    }
+
+    .management h2 {
+        font-size: 1rem;
+    }
+
+    table th,
+    td {
+        font-size: 13px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        margin-top: 8px;
+        border-radius: 15px;
+        color: var(--white);
+    }
+
+    .submit-new-brand {
+        margin-top: 8px;
+    }
+}
+
+/* table responsive styles */
+@media screen and (max-width: 600px) {
+    th {
+        display: none;
+    }
+
+    td {
+        display: block;
+        border: none;
+    }
+
+    td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+    }
+
+    button[type="submit"] {
+        background-color: var(--blue);
+        color: var(--white);
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s;
+    }
+}
