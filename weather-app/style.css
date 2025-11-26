@@ -1,0 +1,759 @@
+:root {
+  /* Day mode palette */
+  --day-bg: #f9f8f6; 
+  --day-box: #efe9e3; 
+  --day-hover: #ddd3c9;
+  --day-attr: #d9cfc7; 
+  --day-accent: #ff8c00; 
+  --day-text-primary: #000;
+  --day-text-label: #333; 
+  --day-text-value: #555; 
+
+  /* Night mode palette */
+  --night-bg: #1e1e1e;
+  --night-box: #2a2a2a;
+  --night-hover: #383838;
+  --night-attr: #3a3a3a;
+  --night-accent: #c9b59c; 
+  --night-text-primary: #f5f5f5;
+  --night-text-label: #ddd;
+  --night-text-value: #aaa;
+}
+
+/* =========================
+   Base Setup
+========================= */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--day-bg);
+  color: var(--day-text-primary);
+}
+
+/* Smooth transitions */
+body,
+.box,
+#citySelect,
+.label,
+.value {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Box base (centralized background + text) */
+.box {
+  background-color: var(--day-box);
+  color: var(--day-text-primary);
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+/* Day mode */
+body.day-mode {
+  background-color: var(--day-bg);
+  color: var(--day-text-primary);
+}
+body.day-mode .box {
+  background-color: var(--day-box);
+  color: var(--day-text-primary);
+}
+body.day-mode .box h3 {
+  color: var(--day-text-primary);
+}
+body.day-mode #citySelect {
+  background-color: var(--day-attr);
+  color: var(--day-text-primary);
+  border: 1px solid #aaa;
+}
+body.day-mode .label {
+  color: var(--day-text-label);
+  font-size: 20px;
+}
+body.day-mode .value {
+  color: var(--day-text-value);
+}
+
+/* Night mode */
+body.night-mode {
+  background-color: var(--night-bg);
+  color: var(--night-text-primary);
+}
+body.night-mode .box {
+  background-color: var(--night-box);
+  color: var(--night-text-primary);
+}
+body.night-mode .box h3 {
+  color: var(--night-text-primary);
+}
+body.night-mode #citySelect {
+  background-color: var(--night-attr);
+  color: var(--night-text-primary);
+  border: 1px solid #555;
+}
+body.night-mode .label {
+  color: var(--night-text-label);
+}
+body.night-mode .value {
+  color: var(--night-text-value);
+}
+
+/* Hover effects */
+body.day-mode .box:hover {
+  background-color: var(--day-hover);
+  border-color: var(--day-text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+body.night-mode .box:hover {
+  background-color: var(--night-hover);
+  border-color: var(--night-accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+/* Dropdown focus */
+body.day-mode #citySelect:focus {
+  outline: 1px solid var(--day-accent);
+}
+body.night-mode #citySelect:focus {
+  outline: 1px solid var(--night-accent);
+}
+
+/* =========================
+   Grid Layout
+========================= */
+.parent {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 12px;
+  padding: 12px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* =========================
+   Header (Block 1)
+========================= */
+.div1 {
+  grid-column: 1 / span 5;
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  margin: 0;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.greeting-text {
+  display: flex;
+  flex-direction: column;
+}
+.username {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  margin: 0 !important;
+}
+.greeting {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+}
+
+/* Toggle switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 32px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  inset: 0;
+  background-color: #ccc;
+  border-radius: 32px;
+  cursor: pointer;
+  border: 0.5px solid darkgrey;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.toggle-switch input:checked + .slider {
+  background-color: #1e1e1e;
+}
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(28px);
+}
+
+/* =========================
+   Sidebar (Block 2)
+========================= */
+.div2 {
+  grid-row: 2 / span 4;
+  border-radius: 12px;
+  padding: 16px;
+}
+.div2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.div2 li {
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+/* =========================
+   Location (Block 3)
+========================= */
+.div3 {
+  grid-column: 2 / span 2;
+  grid-row: 2 / span 2;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+}
+.weather-layout {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 20px;
+}
+.weather-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 8px; */
+  /* margin-top: 4px; */
+}
+.weather-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.weather-icon {
+  width: 150px;
+  height: 100px;
+  vertical-align: middle;
+  background-color: #ccc;
+  border-radius: 12px;
+}
+.location-icon-space {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+}
+#citySelect {
+  background-color: var(--day-attr);
+  color: var(--day-text-primary);
+  border: none;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+.day {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+.date {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 0;
+}
+.time {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* =========================
+   Humidity (Block 4)
+========================= */
+.div4 {
+  grid-column: 2 / span 2;
+  grid-row: 4;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* =========================
+   Condition (Block 5)
+========================= */
+.div7 {
+  grid-column: 4 / span 2;
+  grid-row: 2;
+  border-radius: 12px;
+  padding: 16px;
+}
+.condition_description {
+  padding: 0 10px;
+  color: red;
+}
+
+/* =========================
+   Temperature (Block 6)
+========================= */
+.div8 {
+  grid-column: 4 / span 2;
+  grid-row: 3 / span 2;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* =========================
+   Typography
+========================= */
+.box h3 {
+  font-size: 23px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0px;
+  margin-bottom: 12px;
+  color: var(--day-text-primary);
+}
+.label {
+  font-weight: 600;
+  color: var(--day-text-label);
+  margin-right: 4px;
+}
+.value {
+  font-weight: 400;
+  color: var(--day-text-value);
+}
+.box p {
+  margin: 4px 0;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* =========================
+   Lists inside boxes
+========================= */
+.div3 ul,
+.div4 ul,
+.div7 ul,
+.div8 ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 30px;
+}
+.div3 li,
+.div4 li,
+.div7 li,
+.div8 li {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* =========================
+   Title Icon
+========================= */
+.title-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   Night mode overrides for shared components
+========================= */
+body.night-mode #citySelect {
+  background-color: var(--night-attr);
+  color: var(--night-text-primary);
+}
+body.night-mode .box h3 {
+  color: var(--night-text-primary);
+}
+body.night-mode .label {
+  color: var(--night-text-label);
+}
+body.night-mode .value {
+  color: var(--night-text-value);
+}
+
+/* styles for popups */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: var(--day-box);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+.popup-buttons {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Popup overlay */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Active popup (fade in) */
+.popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Popup content */
+.popup-content {
+  width: 320px;
+  background-color: var(--day-box);
+  color: var(--day-text-primary);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Animate content on show */
+.popup.show .popup-content {
+  transform: scale(1);
+}
+
+/* Night mode styling */
+body.night-mode .popup-content {
+  background-color: var(--night-box);
+  color: var(--night-text-primary);
+}
+
+.reset-icon img {
+  width: 20px; /* adjust size */
+  height: 20px;
+  display: block;
+}
+
+.profile-link:hover {
+  color: var(--day-accent);
+}
+
+body.night-mode .profile-link {
+  color: var(--night-text-label);
+}
+
+body.night-mode .profile-link:hover {
+  color: var(--night-accent);
+}
+
+/* Reset icon button */
+.reset-icon {
+  background: none; 
+  border: none; 
+  padding: 0; 
+  cursor: pointer;
+  font-size: 30px; 
+  color: var(--day-text-label);
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect in day mode */
+body.day-mode .reset-icon:hover {
+  color: var(--day-accent);
+  transform: scale(1.1);
+}
+
+/* Night mode styling */
+body.night-mode .reset-icon {
+  color: var(--night-text-label);
+}
+
+/* Hover effect in night mode */
+body.night-mode .reset-icon:hover {
+  color: var(--night-accent);
+  transform: scale(1.1);
+}
+
+.condition_labels {
+  display: flex;
+  margin-top: 12px;
+  gap: 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+/* =========================
+   Responsive Layout
+========================= */
+
+/* 📱 Responsive styles for 320px – 480px */
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .username {
+    font-size: 16px !important;
+  }
+
+  .greeting {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+  }
+
+  .parent {
+    display: flex;
+    flex-direction: column;
+  }
+  .header-right {
+    gap: 8px;
+  }
+  .header-left {
+    gap: 12px;
+  }
+  .reset-icon {
+    padding-bottom: 5px;
+    font-size: 22px;
+  }
+  .div1,
+  .div2,
+  .div3,
+  .div4,
+  .div7,
+  .div8 {
+    width: 88%;
+    margin-bottom: 5px;
+  }
+  .div2 ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .div8 ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #citySelect {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+  }
+  .weather-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .weather-left,
+  .weather-right {
+    width: 100%;
+    text-align: center;
+  }
+  .slider::before {
+    height: 16px;
+    width: 16px;
+    left: 1px;
+    bottom: 2px;
+  }
+  .slider {
+    height: 20px;
+    width: 47px;
+  }
+  .box h3 {
+    flex-direction: column;
+  }
+  .div3 {
+    flex-direction: column;
+  }
+  .weather-layout {
+    gap: 5px;
+  }
+  body.day-mode .label {
+    font-size: 18px;
+  }
+  .box p {
+    font-size: 17px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .username {
+    font-size: 20px !important;
+  }
+
+  .greeting {
+    font-size: 27px !important;
+    font-weight: 600 !important;
+  }
+
+  .parent {
+    display: flex;
+    flex-direction: column;
+  }
+  .header-right {
+    gap: 8px;
+  }
+  .header-left {
+    gap: 12px;
+  }
+  .reset-icon {
+    padding-bottom: 5px;
+    font-size: 22px;
+  }
+  .div1,
+  .div2,
+  .div3,
+  .div4,
+  .div7,
+  .div8 {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .div2 ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .div4 ul,
+  .div8 ul {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  #citySelect {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .weather-left,
+  .weather-right {
+    width: 100%;
+    /* text-align: center; */
+  }
+  .weather-right {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .slider::before {
+    height: 16px;
+    width: 16px;
+    left: 1px;
+    bottom: 2px;
+  }
+  .slider {
+    height: 20px;
+    width: 47px;
+  }
+  .box h3 {
+    flex-direction: column;
+  }
+  .div3 {
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    border-radius: 12px;
+    padding: 12px 16px;
+    /* display: flex; */
+    align-items: center;
+  }
+  .weather-layout {
+    gap: 30px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+  }
+  body.day-mode .label {
+    font-size: 18px;
+    display: flex;
+  }
+  .box p {
+    font-size: 17px;
+  }
+  .condition_labels {
+    justify-content: center;
+  }
+  .condition_description {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .weather-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+}
+
+@media only screen and (min-width: 1201px) and (max-width: 1600px) {
+}
+
+/* Styles for extra-large screens (TVs, ultra-wide monitors) */
+@media only screen and (min-width: 1601px) {
+  .header {
+    font-size: 24px;
+    padding: 40px; 
+  }
+
+  .weather-info {
+    max-width: 1400px; 
+    margin: 0 auto;
+    gap: 40px; 
+  }
+
+  .weather-icon img {
+    width: 100px; 
+    height: 100px;
+  }
+}
