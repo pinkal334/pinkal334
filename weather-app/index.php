@@ -9,11 +9,21 @@ $key = 'Add Your API Key Here';
 // Step 2: Build the API URL
 $url = "https://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$key}&units=metric";
 
-// Step 3: Fetch JSON response
-$json = file_get_contents($url);
+// Step 3: handle the error if api fails to load data
+$json = @file_get_contents($url);
+if ($json === false) {
+    die("Error: Unable to fetch data from API.");
+}
 
 // Step 4: Decode JSON into PHP array
 $data = json_decode($json, true);
+if ($data === null) {
+    die("Error: Invalid JSON response.");
+}
+
+if (isset($data['cod']) && $data['cod'] != 200) {
+    die("Error: " . ($data['message'] ?? "Unknown error"));
+}
 
 // Step 5: Extract values safely
 $cityName   = $data['name'] ?? 'Unknown';
@@ -145,7 +155,8 @@ $sunset  = $sunsetRaw ? date("h:i A", $sunsetRaw) : '';
 		<div class="box div7">
 			<h3><span class="title-icon"><i class="fi fi-sr-smog"></i></span> Condition</h3>
 			<p class="condition_description">
-				<span class="label">Description:</span> Mostly <span class="value"><?php echo ucfirst($condition); ?> condition according to weather forecast data</span>
+				<span class="label">Description:</span>
+                <span class="value"><?php echo ucfirst($condition); ?> condition according to weather forecast data</span>
 			</p>
 			<div class="condition_labels">
 				<div><span class="label">Cloud Cover:</span> <span class="value"><?php echo $cloudCover; ?>%</span></div>
@@ -171,5 +182,6 @@ $sunset  = $sunsetRaw ? date("h:i A", $sunsetRaw) : '';
 
 	<script src="script.js"></script>
 </body>
+
 
 </html>
